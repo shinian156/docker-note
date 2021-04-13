@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Docker中mysql安装和使用 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="1、Docker安装.html" />
+    <link rel="next" href="6、Docker中Nginx使用.html" />
     
+    
+    <link rel="prev" href="4、Docker中nodejs使用.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -152,7 +154,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="5、Docker中mysql安装和使用.html">
+        <li class="chapter active" data-level="1.6" data-path="5、Docker中mysql安装和使用.html">
             
                 <a href="5、Docker中mysql安装和使用.html">
             
@@ -260,7 +262,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Docker中mysql安装和使用</a>
     </h1>
 </div>
 
@@ -275,24 +277,34 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="linux">Linux</h2>
-<p><a href="https://vuepress.mirror.docker-practice.com/" target="_blank">https://vuepress.mirror.docker-practice.com/</a></p>
-<p>ssh   &#x514D;&#x5BC6;&#x767B;&#x5F55;</p>
-<pre><code>
-Ubuntu 
+                                <h3 id="&#x62C9;&#x53D6;mysql&#x955C;&#x50CF;">&#x62C9;&#x53D6;mysql&#x955C;&#x50CF;</h3>
+<pre><code class="lang-bash">docker pull mysql:5.7
+</code></pre>
+<h3 id="&#x8FD0;&#x884C;-mysql">&#x8FD0;&#x884C; mysql</h3>
+<pre><code class="lang-bash">docker run -itd  -p 3306:3306 <span class="hljs-_">-e</span> MYSQL_ROOT_PASSWORD=123456 mysql
 
-&#x95EE;&#x9898;
+<span class="hljs-comment"># &#x53C2;&#x6570;&#x8BF4;&#x660E;</span>
 
-sudo: add-apt-repository:command not found  
+<span class="hljs-comment"># -p 3306:3306 &#xFF1A;&#x6620;&#x5C04;&#x5BB9;&#x5668;&#x670D;&#x52A1;&#x7684; 3306 &#x7AEF;&#x53E3;&#x5230;&#x5BBF;&#x4E3B;&#x673A;&#x7684; 3306 &#x7AEF;&#x53E3;&#xFF0C;&#x5916;&#x90E8;&#x4E3B;&#x673A;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x901A;&#x8FC7; &#x5BBF;&#x4E3B;&#x673A;ip:3306 &#x8BBF;&#x95EE;&#x5230; MySQL &#x7684;&#x670D;&#x52A1;&#x3002;</span>
+<span class="hljs-comment"># MYSQL_ROOT_PASSWORD=123456&#xFF1A;&#x8BBE;&#x7F6E; MySQL &#x670D;&#x52A1; root &#x7528;&#x6237;&#x7684;&#x5BC6;&#x7801;&#x3002;</span>
+</code></pre>
+<h3 id="&#x8FDB;&#x5165;mysql&#x7EC8;&#x7AEF;">&#x8FDB;&#x5165;mysql&#x7EC8;&#x7AEF;</h3>
+<pre><code class="lang-bash">docker <span class="hljs-built_in">exec</span> -it e7c bash 
+<span class="hljs-comment"># e7c&#x662F;&#x6211;&#x542F;&#x52A8;&#x7684;mysql&#x670D;&#x52A1;&#x7684;CONTAINER ID</span>
 
-&#x6267;&#x884C;&#x5B89;&#x88C5;&#x547D;&#x4EE4;&#xFF1A;
+mysql -u root -p
+<span class="hljs-comment"># &#x8FDB;&#x5165;&#x6570;&#x636E;&#x5E93;</span>
 
-sudo apt-get install software-properties-common
-</code></pre><p>```
-&#x83DC;&#x9E1F;&#x6559;&#x7A0B;&#xFF1A;</p>
-<p><a href="https://www.runoob.com/docker/ubuntu-docker-install.html" target="_blank">https://www.runoob.com/docker/ubuntu-docker-install.html</a></p>
-<p>&#x4F7F;&#x7528;&#x811A;&#x672C;&#x5B89;&#x88C5;docker </p>
-<p>github&#xFF1A; <a href="https://github.com/docker/docker-install" target="_blank">https://github.com/docker/docker-install</a></p>
+<span class="hljs-built_in">exec</span>
+<span class="hljs-comment"># &#x9000;&#x51FA;</span>
+</code></pre>
+<p>::: warning
+&#x5728;navicat&#x94FE;&#x63A5;mysql8&#x4EE5;&#x540E;&#x7684;&#x7248;&#x672C;&#x65F6;&#xFF0C;&#x4F1A;&#x51FA;&#x73B0;2059&#x7684;&#x9519;&#x8BEF;&#xFF0C;&#x8FD9;&#x4E2A;&#x9519;&#x8BEF;&#x51FA;&#x73B0;&#x7684;&#x539F;&#x56E0;&#x662F;&#x5728;mysql8&#x4E4B;&#x524D;&#x7684;&#x7248;&#x672C;&#x4E2D;&#x52A0;&#x5BC6;&#x89C4;&#x5219;&#x4E3A;mysql_native_password&#xFF0C;&#x800C;&#x5728;mysql8&#x4EE5;&#x540E;&#x7684;&#x52A0;&#x5BC6;&#x89C4;&#x5219;&#x4E3A;caching_sha2_password&#x3002;&#x89E3;&#x51B3;&#x6B64;&#x95EE;&#x9898;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x66F4;&#x65B0;navicat&#x9A71;&#x52A8;&#x6765;&#x89E3;&#x51B3;&#x6B64;&#x95EE;&#x9898;&#xFF0C;&#x4E00;&#x79CD;&#x662F;&#x5C06;mysql&#x7528;&#x6237;&#x767B;&#x5F55;&#x7684;&#x52A0;&#x5BC6;&#x89C4;&#x5219;&#x4FEE;&#x6539;&#x4E3A;mysql_native_password&#x3002;</p>
+<p>&#x672C;&#x6587;&#x91C7;&#x7528;&#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>ALTER USER &apos;root&apos;@&apos;39.102.60.136&apos; IDENTIFIED BY &apos;123456&apos; PASSWORD EXPIRE NEVER</p>
+<p>ALTER USER &apos;root&apos;@&apos;39.102.60.136&apos; IDENTIFIED WITH mysql_native_password BY &apos;123456&apos;
+:::</p>
+<p><a href="https://jingyan.baidu.com/article/0aa22375e7966ac8cc0d64b3.html" target="_blank">mysql8.0&#x62A5;2059&#x89E3;&#x51B3;&#x65B9;&#x6848;</a></p>
 
                                 
                                 </section>
@@ -320,8 +332,12 @@ sudo apt-get install software-properties-common
 
             
                 
+                <a href="4、Docker中nodejs使用.html" class="navigation navigation-prev " aria-label="Previous page: Docker中nodejs使用">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="1、Docker安装.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Docker安装">
+                
+                <a href="6、Docker中Nginx使用.html" class="navigation navigation-next " aria-label="Next page: Docker中Nginx使用">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -332,7 +348,7 @@ sudo apt-get install software-properties-common
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Docker安装","level":"1.2","depth":1,"path":"1、Docker安装.md","ref":"1、Docker安装.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2020-08-25T08:54:50.953Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-13T02:24:44.892Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Docker中mysql安装和使用","level":"1.6","depth":1,"next":{"title":"Docker中Nginx使用","level":"1.7","depth":1,"path":"6、Docker中Nginx使用.md","ref":"6、Docker中Nginx使用.md","articles":[]},"previous":{"title":"Docker中nodejs使用","level":"1.5","depth":1,"path":"4、Docker中nodejs使用.md","ref":"4、Docker中nodejs使用.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"5、Docker中mysql安装和使用.md","mtime":"2021-04-13T02:28:03.154Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-13T02:24:44.892Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
